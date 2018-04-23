@@ -12,5 +12,6 @@ export class AppComponent {
 
   Tester() {
     this.core.Load("app-tester");
+    this.core.Display("issue load: app-tester");
   }
 }

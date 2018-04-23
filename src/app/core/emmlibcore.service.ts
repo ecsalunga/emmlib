@@ -1,6 +1,8 @@
 import { Injectable, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Observable, Subject } from 'rxjs/Rx';
-import { LoadHelper, StampHelper } from './helpers';
+import { MatSnackBar } from '@angular/material';
+
+import { LoadHelper, StampHelper, UtilityHelper } from './helpers';
 import { LoadRef, Codes, Update } from './models';
 import { DelayCall } from './decorators';
 
@@ -12,13 +14,15 @@ export class EmmLibCoreService {
     private _updater: Subject<Update>;
     private _loader: LoadHelper;
     private _stamp: StampHelper;
+    private _utility: UtilityHelper;
 
-    constructor(private resolver: ComponentFactoryResolver) { 
+    constructor(private resolver: ComponentFactoryResolver, snackBar: MatSnackBar) { 
         this._updater = new Subject<Update>();
         this.Changed = this._updater.asObservable();
 
         this._loader = new LoadHelper(resolver);
         this._stamp = new StampHelper();
+        this._utility = new UtilityHelper(snackBar);
     }
 
     public get IsCoreLoaded(): boolean {
@@ -31,6 +35,10 @@ export class EmmLibCoreService {
 
         this._isCoreLoaded = true;
         this.Publish(new Update(Codes.CoreLoaded, this._isCoreLoaded));
+    }
+
+    public Display(message: string, action: string = "Done", duration: number = 5000) {
+        this._utility.Display(message, action, duration)
     }
 
     public SelectImage() {
