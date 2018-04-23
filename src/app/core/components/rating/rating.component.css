@@ -1,0 +1,11 @@
+.selectable {
+    cursor: pointer;
+}
+
+.selected {
+    color: orange;
+}
+
+.not-selected {
+    color: gray;
+}

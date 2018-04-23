@@ -2,9 +2,9 @@
 
 # compiled output
 /dist
-/dist-server
 /tmp
 /out-tsc
+/.ng_pkg_build
 
 # dependencies
 /node_modules
@@ -31,9 +31,9 @@
 /coverage
 /libpeerconnection.log
 npm-debug.log
-yarn-error.log
 testem.log
 /typings
+firebase-debug.log
 
 # e2e
 /e2e/*.js
