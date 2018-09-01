@@ -4,8 +4,6 @@
 /dist
 /tmp
 /out-tsc
-/.ng_pkg_build
-dist.tgz
 
 # dependencies
 /node_modules
@@ -32,14 +30,11 @@ dist.tgz
 /coverage
 /libpeerconnection.log
 npm-debug.log
+yarn-error.log
 testem.log
 /typings
-firebase-debug.log
-
-# e2e
-/e2e/*.js
-/e2e/*.map
 
 # System Files
 .DS_Store
 Thumbs.db
+package-lock.json

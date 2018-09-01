@@ -1,21 +1,22 @@
 import { ComponentRef } from '@angular/core';
 
-export class LoadRef {
+export class LoaderRef {
     private _selector: string;
     private _isLoaded: boolean;
-    Component: ComponentRef<any>;
 
-    constructor(selector: string, isLoaded: boolean, component?: ComponentRef<any>) {
+    public Component: ComponentRef<any>;
+
+    constructor(selector: string, isLoaded: boolean = false, component?: ComponentRef<any>) {
         this._selector = selector;
         this._isLoaded = isLoaded;
         this.Component = component;
     }
 
-    public Selector(): string {
+    public get Selector(): string {
         return this._selector;
     }
 
-    public IsLoaded(): boolean {
+    public get IsLoaded(): boolean {
         return this._isLoaded;
     }
 }

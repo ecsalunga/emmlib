@@ -1,9 +1,8 @@
 import { ComponentFactory, ComponentFactoryResolver, ViewContainerRef, ComponentRef } from '@angular/core';
-import { LoadRef } from '../models';
+import { LoaderRef } from '../models';
 
-export class LoadHelper {
+export class LoaderHelper {
     private _viewChild: ViewContainerRef;
-    private _imageSelector: HTMLInputElement;
     private _components: Array<ComponentRef<any>>;
     private _factories: Array<ComponentFactory<any>>;
     
@@ -12,40 +11,29 @@ export class LoadHelper {
         this._factories = Array.from(this.resolver['_factories'].values());
     }
 
-    public SetMainContainer(viewChild: ViewContainerRef) {
+    public SetContainer(viewChild: ViewContainerRef) {
         this._viewChild = viewChild;
     }
 
-    public SetImageSelector(imageSelector: HTMLInputElement) {
-        this._imageSelector = imageSelector;
-    }
-
-    public SelectImage() {
-        if(this._imageSelector != null)
-            this._imageSelector.click();
-        else
-            console.error("imageSelector not found");
-    }
-
-    public LoadComponent(selector: string): LoadRef {
+    public LoadComponent(selector: string): LoaderRef {
         this.clearComponents();
         return this.loadFactory(selector);
     }
 
-    public LoadComponentToView(selector: string, viewChild: ViewContainerRef): LoadRef {
+    public LoadComponentToView(selector: string, viewChild: ViewContainerRef): LoaderRef {
         let factory = <ComponentFactory<any>> this._factories.find((item: ComponentFactory<any>) => item.selector === selector);
         if(factory) {
             let component = this.resolver.resolveComponentFactory(factory.componentType);
             let created = viewChild.createComponent(component);
-            return new LoadRef(selector, true, created);
+            return new LoaderRef(selector, true, created);
         }
         else
-            return new LoadRef(selector, false);
+            return new LoaderRef(selector);
     }
 
-    public LoadComponents(selectors: Array<string>): Array<LoadRef>{
+    public LoadComponents(selectors: Array<string>): Array<LoaderRef>{
         this.clearComponents();
-        let components = new Array<LoadRef>();
+        let components = new Array<LoaderRef>();
         selectors.forEach(selector => {
             components.push(this.loadFactory(selector));
         });
@@ -53,7 +41,7 @@ export class LoadHelper {
         return components;
     }
 
-    private loadFactory(selector: string): LoadRef {
+    private loadFactory(selector: string): LoaderRef {
         if(this._viewChild != null)
         {
             let factory = <ComponentFactory<any>> this._factories.find((item: ComponentFactory<any>) => item.selector === selector);
@@ -61,14 +49,14 @@ export class LoadHelper {
                 let component = this.resolver.resolveComponentFactory(factory.componentType);
                 let created = this._viewChild.createComponent(component);
                 this._components.push(created);
-                return new LoadRef(selector, true, created);
+                return new LoaderRef(selector, true, created);
             }
             else
-                return new LoadRef(selector, false);
+                return new LoaderRef(selector);
         }
         else {
             console.error("emmlib-outlet not found");
-            return new LoadRef(selector, false);
+            return new LoaderRef(selector);
         }
     }
 

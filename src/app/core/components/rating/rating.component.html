@@ -1,8 +1,0 @@
-<ng-container *ngFor="let item of Starts">
-  <ng-container *ngIf="Rating.IsSelectable; else Static">
-      <span (click)="Select(item)" class="selectable {{ Rating.Value >= item ? 'selected' : 'not-selected' }}"><mat-icon>star_rate</mat-icon></span>
-  </ng-container>
-  <ng-template #Static>
-      <span class="{{ Rating.Value >= item ? 'selected' : 'not-selected' }}"><mat-icon>star_rate</mat-icon></span>
-  </ng-template>
-</ng-container>

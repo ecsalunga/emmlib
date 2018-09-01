@@ -1,3 +1,2 @@
-export { LoadHelper } from './load';
+export { LoaderHelper } from './loader';
 export { StampHelper } from './stamp';
-export { UtilityHelper } from './utility';

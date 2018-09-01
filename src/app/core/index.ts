@@ -1,5 +1,4 @@
-export { EmmLibModule } from './emmlib.module'
-export { EmmLibCoreService } from './emmlibcore.service';
-export * from './data';
-export * from './decorators';
-export * from './models';
+export { EmmlibModule } from './emmlib.module';
+export { EmmlibService } from './emmlib.service';
+export { LoaderRef } from './models/loaderref';
+export { Delay } from './decorators/delay';
