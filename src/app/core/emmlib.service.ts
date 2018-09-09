@@ -2,7 +2,7 @@ import { Injectable, ComponentFactoryResolver, ViewContainerRef } from '@angular
 
 import { LoaderHelper, StampHelper } from './helpers';
 import { Delay } from './decorators/delay';
-import { LoaderRef } from './models';
+import { LoaderRef } from './models/loaderref';
 
 @Injectable()
 export class EmmlibService {
@@ -13,6 +13,7 @@ export class EmmlibService {
 
     constructor(private resolver: ComponentFactoryResolver) {
         this._loader = new LoaderHelper(resolver);
+        this._stamp = new StampHelper();
     }
 
     public set Container(viewChild: ViewContainerRef) {

@@ -1,5 +1,5 @@
 import { ComponentFactory, ComponentFactoryResolver, ViewContainerRef, ComponentRef } from '@angular/core';
-import { LoaderRef } from '../models';
+import { LoaderRef } from '../models/loaderref';
 
 export class LoaderHelper {
     private _viewChild: ViewContainerRef;

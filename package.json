@@ -1,6 +1,6 @@
 {
   "name": "emmlib",
-  "version": "0.5.15",
+  "version": "0.5.16",
   "scripts": {
     "packagr": "ng-packagr -p ng-package.json"
   },
